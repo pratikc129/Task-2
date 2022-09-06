@@ -6,7 +6,7 @@ import tweepy
 
 
 class Command(BaseCommand):
-    help = "A commands to add data from an Excel file to the database"
+    help = "A commands to add players from an Excel file to the database"
 
     def handle(self, *args, **options):
         """twitter keys and token """
@@ -47,7 +47,7 @@ class Command(BaseCommand):
                     ltweet = api.user_timeline(screen_name=twitters)
                     last_tweet = str(ltweet[0].text).encode('unicode_escape')
 
-                    """adding twitter data into database"""
+                    """adding twitter players into database"""
                     TwitterInfo.objects.filter(id=i).update(follower_count=follower_count,
                                                             following_count=following_count,
                                                             twitter_count=twitter_count, retweet_count=retweet_count,

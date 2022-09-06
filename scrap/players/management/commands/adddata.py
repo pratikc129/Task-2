@@ -1,12 +1,12 @@
 from django.core.management.base import BaseCommand
-from data.models import *
+from ...models import *
 import openpyxl
 import ast
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 
 
 class Command(BaseCommand):
-    help = "A commands to add data from an Excel file to the database"
+    help = "A commands to add players from an Excel file to the database"
 
     def handle(self, *args, **options):
         global dic

@@ -73,7 +73,7 @@ class Migration(migrations.Migration):
                 ('last_tweet', models.CharField(max_length=100, null=True)),
                 ('location', models.CharField(max_length=10, null=True)),
                 ('profile_name', models.CharField(max_length=30, null=True)),
-                ('player_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='data.position')),
+                ('player_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='players.position')),
             ],
         ),
         migrations.CreateModel(
@@ -81,7 +81,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100, null=True)),
-                ('country_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='data.country')),
+                ('country_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='players.country')),
             ],
         ),
         migrations.CreateModel(
@@ -93,17 +93,17 @@ class Migration(migrations.Migration):
                 ('image', models.URLField()),
                 ('height', models.CharField(max_length=2000, null=True)),
                 ('weight', models.CharField(max_length=2000, null=True)),
-                ('city_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='data.city')),
-                ('offer_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='data.offer')),
-                ('position_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='data.position')),
-                ('school_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='data.highschool')),
-                ('year_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='data.year')),
+                ('city_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='players.city')),
+                ('offer_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='players.offer')),
+                ('position_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='players.position')),
+                ('school_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='players.highschool')),
+                ('year_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='players.year')),
             ],
         ),
         migrations.AddField(
             model_name='offer',
             name='team',
-            field=models.ManyToManyField(to='data.team'),
+            field=models.ManyToManyField(to='players.team'),
         ),
         migrations.CreateModel(
             name='Hardcommit',
@@ -111,13 +111,13 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('commit', models.CharField(max_length=100)),
                 ('recruited_by', models.CharField(max_length=100)),
-                ('player', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='data.player')),
-                ('team', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='data.team')),
+                ('player', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='players.player')),
+                ('team', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='players.team')),
             ],
         ),
         migrations.AddField(
             model_name='city',
             name='state_id',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='data.state'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='players.state'),
         ),
     ]

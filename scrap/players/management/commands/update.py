@@ -8,11 +8,11 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import ast
 from selenium.webdriver.common.by import By
-from django.core.exceptions import ObjectDoesNotExist
+
 
 
 class Command(BaseCommand):
-    help = "A commands to add data from an Excel file to the database"
+    help = "A commands to add players from an Excel file to the database"
 
     def handle(self, *args, **options):
         player = Player.objects.all()
@@ -131,19 +131,16 @@ class Command(BaseCommand):
             else:
                 Year.objects.update(name=updated_year)
 
-            """scraping image data"""
+            """scraping image players"""
             image_link = driver.find_element(By.XPATH, "//img[@class='jsonly']").get_attribute("src")
             print("image link", image_link)
-            """updating imge data"""
+            """updating imge players"""
             if image_link == image:
                 print()
             else:
                 Player.objects.update_or_create(image=image_link)
 
 
-            # commited = driver.find_element(By.XPATH,
-            #                                '//span[@class="college-comp__interest-level '
-            #                                'college-comp__interest-level--committed-bg"]').text
             commited = driver.find_element(By.XPATH,"/html/body/section[1]/section/div/section/section/div/ul/li[1]/span").text
             print(commited)
             recruited_by = driver.find_elements(By.XPATH,
@@ -190,9 +187,6 @@ class Command(BaseCommand):
             # twittername = ("@" + value[1])
             # print("Account_Name", twittername)
             # break
-
-
-
 
         # for i in range(1,3):
         #     player_info=Player.objects.get(id=i)

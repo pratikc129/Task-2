@@ -1,4 +1,3 @@
-
 from rest_framework import viewsets, generics, permissions
 from rest_framework.response import Response
 from knox.models import AuthToken
@@ -59,6 +58,12 @@ class YearViewset(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
+class OfferViewset(viewsets.ModelViewSet):
+    queryset = Offer.objects.filter()
+    serializer_class = OfferSerializers
+    permission_classes = [permissions.IsAuthenticated]
+
+
 class StateViewset(viewsets.ModelViewSet):
     queryset = State.objects.filter()
     serializer_class = StateSerializers
@@ -68,6 +73,12 @@ class StateViewset(viewsets.ModelViewSet):
 class CityViewset(viewsets.ModelViewSet):
     queryset = City.objects.filter()
     serializer_class = CitySerializers
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class StateViewset(viewsets.ModelViewSet):
+    queryset = State.objects.filter()
+    serializer_class = StateSerializers
     permission_classes = [permissions.IsAuthenticated]
 
 

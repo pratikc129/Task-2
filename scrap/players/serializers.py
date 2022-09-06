@@ -143,3 +143,17 @@ class YearSerializers(serializers.ModelSerializer):
     class Meta:
         model = Year
         fields = '__all__'
+
+class StateSerializers(serializers.ModelSerializer):
+    """serializer for year view"""
+
+    class Meta:
+        model = State
+        fields = '__all__'
+
+class OfferSerializers(serializers.ModelSerializer):
+    """serializer for offer view"""
+
+    class Meta:
+        model = Offer
+        fields = '__all__'

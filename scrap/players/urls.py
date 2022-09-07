@@ -31,20 +31,29 @@ Highschoolapi2 = HighSchoolViewSet.as_view({
     'patch': 'partial_update',
     'delete': 'destroy',
 })
-Teamapi = TeamViewSet.as_view({
-    'get': 'list',
+Teamapi_list = TeamViewSet.as_view({
+    'get': 'list'
+})
+Teamapi_detail = TeamViewSet.as_view({
+    'get': 'retrieve',
     'put': 'update',
     'patch': 'partial_update',
     'delete': 'destroy',
 })
-Hardcommitapi = HardcommitViewSet.as_view({
-    'get': 'list',
+Hardcommitapi_list = HardcommitViewSet.as_view({
+    'get': 'list'
+})
+Hardcommitapi_detail = HardcommitViewSet.as_view({
+    'get': 'retrieve',
     'put': 'update',
     'patch': 'partial_update',
     'delete': 'destroy',
 })
-Twitterapi = TwitterViewset.as_view({
-    'get': 'list',
+Twitterapi_list = TwitterViewset.as_view({
+    'get': 'list'
+})
+Twitterapi_detail = TwitterViewset.as_view({
+    'get': 'retrieve',
     'put': 'update',
     'patch': 'partial_update',
     'delete': 'destroy',
@@ -108,13 +117,16 @@ urlpatterns = [
     path('<int:pk>/', Playerapi_detail, name='playerapi2'),
     path('position/', Positionapi_list, name='positionapi'),
     path('position/<int:pk>/', Positionapi_detail, name='positionapi2'),
-    path('state/',Stateapi_list, name='stateapi'),
-    path('state/<int:pk>/',Stateapi_detail, name='stateapi2'),
+    path('state/', Stateapi_list, name='stateapi'),
+    path('state/<int:pk>/', Stateapi_detail, name='stateapi2'),
     path('school/', Highschoolapi, name='highschoolapi'),
     path('school/<int:pk>/', Highschoolapi2, name='highschoolapi2'),
-    path('team/', Teamapi, name='Teamapi'),
-    path('commit/', Hardcommitapi, name='Hardcommitapi'),
-    path('twitter/', Twitterapi, name='Hardcommitapi'),
+    path('team/', Teamapi_list, name='Teamapi'),
+    path('team/<int:pk>/', Teamapi_detail, name='Teamapi2'),
+    path('commit/', Hardcommitapi_list, name='Hardcommitapi'),
+    path('commit/<int:pk>/', Hardcommitapi_detail, name='Hardcommitapi2'),
+    path('twitter/', Twitterapi_list, name='twitterapi'),
+    path('twitter/<int:pk>/', Twitterapi_detail, name='twitterapi2'),
     path('user/', Userstapi_list, name='userapi'),
     path('user/<int:pk>/', Usertapi_detail, name='userapi2'),
     path('register/', RegistrationAPI.as_view(), name="register"),
@@ -126,6 +138,6 @@ urlpatterns = [
     path('country/', Countryapi_list, name='countryapi'),
     path('country/<int:pk>', Countryapi_detail, name='countryapi2'),
     path('offer/', offerapi_list, name='offerapi'),
-    path('offer/<int:pk>', offerapi_detail, name='offerapi')
+    path('offer/<int:pk>', offerapi_detail, name='offerapi2')
 
 ]

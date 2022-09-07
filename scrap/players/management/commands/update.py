@@ -10,7 +10,6 @@ import ast
 from selenium.webdriver.common.by import By
 
 
-
 class Command(BaseCommand):
     help = "A commands to add players from an Excel file to the database"
 
@@ -115,6 +114,7 @@ class Command(BaseCommand):
                 print()
             else:
                 City.objects.update_or_create(name=updated_city)
+                State.objects.update_or_create(name=state)
 
             """scraping year"""
             year = driver.find_element(By.XPATH,
@@ -140,8 +140,8 @@ class Command(BaseCommand):
             else:
                 Player.objects.update_or_create(image=image_link)
 
-
-            commited = driver.find_element(By.XPATH,"/html/body/section[1]/section/div/section/section/div/ul/li[1]/span").text
+            commited = driver.find_element(By.XPATH,
+                                           "/html/body/section[1]/section/div/section/section/div/ul/li[1]/span").text
             print(commited)
             recruited_by = driver.find_elements(By.XPATH,
                                                 "/html/body/section[1]/section/div/section/section/div/ul/li["
@@ -154,70 +154,7 @@ class Command(BaseCommand):
                                               "1]/div[1]/a[1]").text
             print(commitedclg)
 
-            id1=Player.objects.get(first_name=firstname,last_name=lastname,height=height1,weight=weight1)
-            te=id1.id
-            a=Team.objects.get(name=commitedclg)
-            d=Hardcommit.objects.filter(player=te).update(commit=commited,recruited_by=t,team=a)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            # driver.switch_to.frame('twitter-widget-0')
-            # time.sleep(4)
-            # twitters = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/div[1]/a/div/a/span").text
-            # value = twitters.split('@')
-            # twittername = ("@" + value[1])
-            # print("Account_Name", twittername)
-            # break
-
-        # for i in range(1,3):
-        #     player_info=Player.objects.get(id=i)
-        #     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-        #     driver.maximize_window()
-        #     driver.get("https://247sports.com/Season/2023-Football/Recruits/")
-        #     time.sleep(8)
-        #
-        #     search = driver.find_element(By.XPATH,
-        #                                  "/html/body/section[1]/section/div/section["
-        #                                  "2]/section/section/section/div/section[1]/form/input")
-        #
-        #     search.send_keys(player_info.first_name," ",player_info.last_name)
-        #     time.sleep(4)
-        #     serachit = driver.find_element(By.XPATH,
-        #                                    "/html/body/section[1]/section/div/section["
-        #                                    "2]/section/section/section/div/section[1]/form/button").click()
-        #
-        #     time.sleep(4)
-        #     playerlist = driver.find_element(By.XPATH, '//li[@class="name"]/a')
-        #     playerlist.click()
-        #     """scraping position"""
-        #     pos = driver.find_element(By.XPATH,
-        #                               "/html/body/section[1]/section/div/section/header/div[1]/ul[1]/li[1]/span[2]").text
-        #     print(pos)
-        #     """Updating position"""
-        #     positions = Position.objects.filter(id=i).update(pos=)
-        #     updated_position = positions.position
-        #     print(updated_position)
-        #     if pos == updated_position:
-        #         print()
-        #     else:
-        #         Position.objects.update(position=updated_position)
-
+            id1 = Player.objects.get(first_name=firstname, last_name=lastname, height=height1, weight=weight1)
+            te = id1.id
+            collegename = Team.objects.get(name=commitedclg)
+            hardcommit = Hardcommit.objects.filter(player=te).update(commit=commited, recruited_by=t, team=collegename)

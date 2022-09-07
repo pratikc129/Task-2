@@ -73,7 +73,7 @@ class TwitterSerializers(serializers.ModelSerializer):
     class Meta:
         model = TwitterInfo
         fields = [
-            'username', 'follower_count', 'following_count', 'twitter_count',
+            'id','username', 'follower_count', 'following_count', 'twitter_count',
             'retweet_count', 'last_tweet',
             'location', 'profile_name', 'player_id'
         ]
